@@ -7,12 +7,12 @@ This game is compiled by using just main.c.
 
 Todo
 -
--[ ] Make todo list
--[ ] Main menu screen
--[ ] Use struct for equipment/items
--[ ] Comment code for confusing code
--[ ] Randoms events
--[ ] Handler for events
--[ ] Map??
--[ ] More player interaction
+- [ ] Make todo list 
+- [ ] Main menu screen
+- [ ] Use struct for equipment/items
+- [ ] Comment code for confusing code
+- [ ] Randoms events
+- [ ] Handler for events
+- [ ] Map??
+- [ ] More player interaction
 
