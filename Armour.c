@@ -5,7 +5,7 @@
 
 //
 // Created by Weston on 11/3/2019.
-//
+// TODO Delete and merge with Armour1
 int getRandomArmourRarity(int rarity) {
     rarity = rand() % rarity;
     int numTwos = 1;

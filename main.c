@@ -6,6 +6,7 @@
 #include "Misc.c"
 #include "PrintOuts.c"
 #include "PlayerPrompts.c"
+#include "Armour1.c"
 
 #define StartingStat 10
 
@@ -13,9 +14,11 @@ void initailizingGame();
 
 int main() {
     initailizingGame();
-    printIntroScreen();
+    /*printIntroScreen();
     combatScreen();
-
+    */
+    setFArmour();
+    printAllArmourEquipped();
 }
 
 void initailizingGame() {

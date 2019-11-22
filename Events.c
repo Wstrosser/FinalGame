@@ -4,6 +4,7 @@
 #ifndef EVENTS_C
 #define EVENTS_C
 
+//TODO work on this a lot
 void randomStatEvent(int *player, int eventID) {
     switch (eventID) {
         case 0:

@@ -13,7 +13,7 @@ static int tempPlayerData[6];
 
 void setTempPlayerData();
 
-enum stats {
+enum Stats {
     Health = 0, Strength, Agility, Defence, MagicDefence, Magic, Intel, Equipment, Pet, Completed
 };
 
