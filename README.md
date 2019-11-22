@@ -1,5 +1,4 @@
-FinalGame
---- 
+# FinalGame
 Weston Strosser \
 This game is compiled by using just main.c.
     This game was meant to at as a summary of everything I learn in intro to C programming.

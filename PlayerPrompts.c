@@ -12,16 +12,6 @@
 #include <stdio.h>
 #include <ctype.h>
 
-int validatingInput(int max) {
-    int choice = 0;
-    do {
-        scanf("%d", &choice);
-        if (choice < 0 || choice > max) {
-            printf("Please Enter a valid choice\n");
-        }
-    } while (isdigit(choice) && (choice < 0 || choice > 5));
-
-};
 
 void addStatPoint(int nSkillPoints) {
     int choice = 0;
@@ -34,12 +24,10 @@ void addStatPoint(int nSkillPoints) {
     do {
         printPlayerHeader(playerData);
         printStatUpgrade();
-        do {
-            if (choice < 0 || choice > 5) {
-                printf("Please Enter a valid choice\n");
-            }
-            scanf("%d", &choice);
-        } while (isdigit(choice) && (choice < 0 || choice > 5));
+        choice = returnValidImport(6);
+        if (choice == -1) {
+            continue;
+        }
         addSkillPoint(choice);
         nSkillPoints--;
         if (nSkillPoints > 1) {
@@ -53,24 +41,22 @@ int getEnemyAttackChoice() {
     return rand() % 2;
 } //Return 0 or 1 for enemyAttack Choice
 int getPlayerDefenceChoice() {
-    printDefending();
-    int choice = 0;
+    int choice;
     do {
-        printf("\nEnter a valid choice\n");
-        scanf("%d", &choice);
-    } while (isdigit(choice) != 0 || choice < 0 || choice > 1);
+        printDefending();
+        choice = returnValidImport(1);
+    } while (choice == -1);
     return choice;
 } //Return 0 or 1 for defence choice
 int getEnemyDefenceChoice() {
     return rand() % 2;
 } //Return 0 or 1 for enemydefence choice
 int getPlayerAttackChoice() {
-    printPlayerAttack();
-    int choice = 0;
+    int choice;
     do {
-        printf("\nEnter a valid choice\n");
-        scanf("%d", &choice);
-    } while (isdigit(choice) != 0 || choice < 0 || choice > 1);
+        printPlayerAttack();
+        choice = returnValidImport(1);
+    } while (choice == -1);
     return choice;
 } //Return 0 or 1 for attack choice
 int returnDamage(int a, int d, double m) {
