@@ -7,7 +7,7 @@
 void printStatInfoScreen();
 
 void clear() {
-    printf("Press ENTER key to Continue\n");
+    printf("\nPress ENTER key to Continue\n");
     getchar();
     system("clear");
 }
@@ -71,12 +71,12 @@ void printEnemyHeader(int *array) {
 
 void printDefending() {
     printf("The Enemy is getting ready to attack!\nHow would you like to defend?\n");
-    printf("[0] Physical\n[1] Magic");
+    printf("[0] Physical\n[1] Magic\n");
 }
 
 void printPlayerAttack() {
     printf("You can attack.\nPick your choice of attack\n");
-    printf("[0] Physical\n[1] Magic");
+    printf("[0] Physical\n[1] Magic\n");
 }
 
 void printStatUpgrade() {
@@ -109,6 +109,7 @@ void printStatInfoScreen() {
            "Magic Defence:\tthe amount the damage can be reduced by when magically attacked\n"
            "Magic Attack: \tthe amount of damage you can deal with a magical attack\n"
            "Intel: \ta number used in random events and determine the skill points granted\n");
+    getchar();
     clear();
 }
 

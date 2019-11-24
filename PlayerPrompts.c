@@ -103,13 +103,17 @@ void attackingTheEnemy() {
 }
 
 int combatScreen() { //Return 0 if the player continues and 1 if not
-    int maxSpeedTotal = getPlayerValueAtN(2) * getEnemyValueAtN(2);
+    setInitialEnemies();
+
+    int speedAp = getPlayerValueAtN(Agility) / 10, speedAe = getEnemyValueAtN(Agility) / 10;
+    int maxSpeedTotal = returnLCM(speedAp, speedAe);
     int speedE = maxSpeedTotal, speedP = maxSpeedTotal;
+
     do {
         system("clear");
-        if (playerData[0] <= 0) {
+        if (playerData[Health] <= 0) {
             return 1;
-        } else if (speedP == 0) {
+        } else if (speedP <= speedAp) {
             printCombatHeader();
             attackingTheEnemy();
             speedP = maxSpeedTotal;
@@ -117,13 +121,12 @@ int combatScreen() { //Return 0 if the player continues and 1 if not
             getchar();
             getchar();
         } else {
-            speedP -= getPlayerValueAtN(Agility);
+            speedP -= speedAp;
         }
-        if (enemies[0] < 1) {
+        if (enemies[Health] < 1) {
             printf("\nThe enemy won't fight another day.\n");
-            setInitialEnemies();
             return 0;
-        } else if (speedE == 0) {
+        } else if (speedE <= speedAe) {
             printCombatHeader();
             attackingThePlayer();
             speedE = maxSpeedTotal;
@@ -131,7 +134,7 @@ int combatScreen() { //Return 0 if the player continues and 1 if not
             getchar();
             getchar();
         } else {
-            speedE -= getEnemyValueAtN(Agility);
+            speedE -= speedAe;
         }
 
     } while (tempPlayerData[0] > 0 && enemies[0]);

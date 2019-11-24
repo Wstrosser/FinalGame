@@ -23,7 +23,7 @@ void modPlayerStats(int stat, int statChange) {
     *ptr += statChange;
 }
 
-void setInitialPlayerStats(int pInt[10]) {
+void setInitialPlayerStats() {
     int i;
     for (i = 0; i <= 10; i++) {
         if (i <= 6) {

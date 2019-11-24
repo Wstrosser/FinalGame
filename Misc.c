@@ -8,6 +8,32 @@
 #ifndef MISC_C
 #define MISC_C
 
+int max(int x, int y) {
+    if (x > y) {
+        return x;
+    } else {
+        return y;
+    }
+}
+
+int min(int x, int y) {
+    if (x < y) {
+        return x;
+    } else {
+        return y;
+    }
+}
+
+int returnLCM(int x, int y) {
+    int lar = max(x, y);
+    int small = min(x, y);
+    int i;
+    for (i = lar;; i += lar) {
+        if (i % small == 0)
+            return i;
+    }
+}
+
 
 void printIntArray(int array[], int sizeArray) {
     int i;

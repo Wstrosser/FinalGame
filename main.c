@@ -8,22 +8,32 @@
 #include "PlayerPrompts.c"
 #include "Armour1.c"
 
-#define StartingStat 10
+
 
 void initailizingGame();
 
 int main() {
     initailizingGame();
-    /*printIntroScreen();
-    combatScreen();
-    */
+    //printIntroScreen();
+    int i = 0;
+    while (i < 16) {
+        if (combatScreen() == 1) {
+            return 1;
+        }
+        i++;
+        addStatPoint(avgBaseStats());
+    }
+
+    return 0;
+    /*
     setFArmour();
     printAllArmourEquipped();
+*/
 }
 
 void initailizingGame() {
 
-    setInitialPlayerStats(playerData);
+    setInitialPlayerStats();
     setInitialEnemies();
 }
 
