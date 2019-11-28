@@ -104,14 +104,14 @@ void attackingTheEnemy() {
 
 int combatScreen() { //Return 0 if the player continues and 1 if not
     setInitialEnemies();
-
-    int speedAp = getPlayerValueAtN(Agility) / 10, speedAe = getEnemyValueAtN(Agility) / 10;
+    setTempPlayerData();
+    int speedAp = getPlayerValueAtN(Agility) / 10 + 1, speedAe = getEnemyValueAtN(Agility) / 10 + 1;
     int maxSpeedTotal = returnLCM(speedAp, speedAe);
     int speedE = maxSpeedTotal, speedP = maxSpeedTotal;
 
     do {
         system("clear");
-        if (playerData[Health] <= 0) {
+        if (tempPlayerData[Health] <= 0) {
             return 1;
         } else if (speedP <= speedAp) {
             printCombatHeader();

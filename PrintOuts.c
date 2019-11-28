@@ -113,5 +113,12 @@ void printStatInfoScreen() {
     clear();
 }
 
+void printMainMenu() {
+    printf("Would you like to start a new game?\n"
+           "[0] Start New Game\n"
+           "[1] Continue Game\n"
+           "[2] Quit Game\n");
+}
+
 #endif // PRINTOUT_C
 

@@ -8,14 +8,36 @@
 #define PLAYER_C
 
 #define StartingStat 10
-static int playerData[10];
+int playerData[8];
 static int tempPlayerData[6];
 
 void setTempPlayerData();
 
 enum Stats {
-    Health = 0, Strength, Agility, Defence, MagicDefence, Magic, Intel, Equipment, Pet, Completed
+    Health = 0, Strength, Agility, Defence, MagicDefence, Magic, Intel, Completed
 };
+
+char *returnStat(enum Stats stats) {
+    switch (stats) {
+        case Health:
+            return "Health";
+        case Strength:
+            return "Strength";
+        case Agility:
+            return "Agility";
+        case Defence:
+            return "Defence";
+        case Magic:
+            return "Magic Attack";
+        case MagicDefence:
+            return "Magical Defence";
+        case Intel:
+            return "Intel";
+        default:
+            return "";
+    }
+
+}
 
 
 void modPlayerStats(int stat, int statChange) {
@@ -25,7 +47,7 @@ void modPlayerStats(int stat, int statChange) {
 
 void setInitialPlayerStats() {
     int i;
-    for (i = 0; i <= 10; i++) {
+    for (i = 0; i <= 8; i++) {
         if (i <= 6) {
             int *ptr = &playerData[i];
             *ptr = StartingStat;
@@ -39,12 +61,12 @@ void setInitialPlayerStats() {
 
 int avgBaseStats() {
     int sum = 0;
-    int i = 6, j = 6;
-    while (i > 0) {
+    int i = 0, j = 6;
+    while (i <= 6) {
         sum += playerData[i];
-        i--;
+        i++;
     }
-    return sum / j;
+    return sum / 6;
 }
 
 void removeArmour() {

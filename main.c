@@ -17,11 +17,9 @@ int main() {
     //printIntroScreen();
     int i = 0;
     while (i < 16) {
-        if (combatScreen() == 1) {
-            return 1;
-        }
+        if (combatScreen() == 1)
+            break;
         i++;
-        addStatPoint(avgBaseStats());
     }
 
     return 0;
