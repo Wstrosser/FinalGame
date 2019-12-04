@@ -1,21 +1,32 @@
 //
 // Created by Weston on 11/3/2019.
 //
-#include "Armour.c"
-
 
 #ifndef PLAYER_C
 #define PLAYER_C
 
+#include "Armour.c"
+#include "Events.c"
+
+
 #define StartingStat 10
 int playerData[8];
+/* 0-> Health
+ * 1-> Strength
+ * 2-> Speed
+ * 3-> Defence
+ * 4-> Magic Def
+ * 5-> Magic Attack
+ * 6-> Intel
+ * 7-> Gold
+ * 8-> Score
+ * */
 static int tempPlayerData[6];
 
 void setTempPlayerData();
 
-enum Stats {
-    Health = 0, Strength, Agility, Defence, MagicDefence, Magic, Intel, Completed
-};
+enum Stats;
+typedef enum Stats stats;
 
 char *returnStat(enum Stats stats) {
     switch (stats) {
@@ -69,42 +80,13 @@ int avgBaseStats() {
     return sum / 6;
 }
 
-void removeArmour() {
-    if (playerData[8] != 0) {
-        int armourValue = playerData[8];
-        int statOne = getArmourStatOne(armourValue);
-        int statTwo = getArmourStatTwo(armourValue);
-        playerData[statOne] -= getArmourBonusValue(armourValue);
-        playerData[statTwo] -= getArmourBonusValue(armourValue);
-    }
-}
-
-void equipArmour() {
-    int armourValue = playerData[8];
-    int statOne = getArmourStatOne(armourValue);
-    int statTwo = getArmourStatTwo(armourValue);
-    playerData[statOne] += getArmourBonusValue(armourValue);
-    playerData[statTwo] += getArmourBonusValue(armourValue);
-}
-
-void setArmour(int armour) {
-    int *ptr = &playerData[8];
-    if (armour != playerData[8]) {
-        removeArmour();
-        *ptr = armour;
-        equipArmour();
-    }
-}
-
 void addSkillPoint(int stat) {
     int *ptr = playerData;
     *(ptr + stat) += 1;
     setTempPlayerData();
 }
 
-void addRandomArmour() {
-    int randomArmour = getRandArmour(avgBaseStats());
-}
+
 
 void setTempPlayerData() {
     int i = 0;
@@ -119,19 +101,31 @@ int getPlayerValueAtN(int n) {
 
 int getPCombatAttackValue(int typeAttack) {
     if (typeAttack == 0) {
-        return playerData[1];
+        return tempPlayerData[1];
     } else if (typeAttack == 1) {
-        return playerData[5];
+        return tempPlayerData[5];
     } else return 0;
 }
 
 int getPCombatDefenceValue(int typeAttack) {
     if (typeAttack == 0) {
-        return playerData[3];
+        return tempPlayerData[3];
     } else if (typeAttack == 1) {
-        return playerData[4];
+        return tempPlayerData[4];
     } else return 0;
 }
 
+void placeArmourOnTemp() {
+    int i;
+    for (i = 0; i <= 5; i++) {
+        tempPlayerData[
+                playerArmour[i].statOne] += playerArmour[i].boostValue;
+        tempPlayerData[
+                playerArmour[i].statTwo] += playerArmour[i].boostValue;
+    }
+}
 
+void applyGodsBoost(int n) {
+    setArmour(returnGodArmour(n));
+};
 #endif /* PLAYER_C */

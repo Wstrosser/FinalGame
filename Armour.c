@@ -1,74 +1,90 @@
-#include <stdlib.h>
-
-#ifndef ARMOUR_C
-#define ARMOUR_C
-
 //
-// Created by Weston on 11/3/2019.
-// TODO Delete and merge with Armour1
-int getRandomArmourRarity(int rarity) {
-    rarity = rand() % rarity;
-    int numTwos = 1;
-    while (rarity > 1) {
-        numTwos++;
-        rarity /= 2;
-    }
-    return numTwos;
-}
+// Created by Weston on 11/21/2019.
+//
 
-int getRandomArmourType(int armour) {
-    int armourType = armour % 6;
-    int armourStats = 0;
-    switch (armourType) {
-        //Atk + Special +   Blessed Blade 1 5
-        //Atk + Def +   	Spiked Shield 1 3
-        //Def + SpD +	    Royal Robes   3 4
-        //Agl + Def +	    Special Suit  2 3
-        //Sp + Spd +	    Sacred Staff  4 5
-        //H + Def +         Heavy Chest plate 0 3
-        case 0:
-            armourStats += 15;
-            break;
-        case 1:
-            armourStats += 13;
-            break;
-        case 2:
-            armourStats += 34;
-            break;
-        case 3:
-            armourStats += 23;
-            break;
-        case 4:
-            armourStats += 45;
-            break;
-        case 5:
-            armourStats += 03;
+#ifndef ARMOUR1_C
+#define ARMOUR1_C
+
+#include "Player.c"
+
+
+/*TODO add random generated Armour
+        merge player Array with Armour array
+        create a way for enemies to have armour
+ */
+typedef enum ArmourID armourID;
+
+enum ArmourID {
+    Helm, Chestplate, Legplates, Gloves, Boots, Weapon
+};
+
+char *returnArmourType(armourID armourId) {
+    switch (armourId) {
+        case Helm:
+            return "Helm";
+        case Chestplate:
+            return "Chestplate";
+        case Legplates:
+            return "Legplates";
+        case Gloves:
+            return "Gloves";
+        case Boots:
+            return "Boots";
+        case Weapon:
+            return "Weapon";
         default:
-            armourStats += 00;
+            return "Null";
     }
-    return armourStats;
-
 }
 
-int getRandArmour(int avgStats) {
-    int armour = 0;
-    armour = (getRandomArmourRarity(avgStats) * 100) * (avgStats / 10) +
-             getRandomArmourType(avgStats);
+enum Stats {
+    Health = 0, Strength, Agility, Defence, MagicDefence, Magic, Intel, Completed
+};
+typedef enum Stats stats;
 
-    return armour;
+typedef struct Armour {
+    int boostValue;
+    stats statOne;
+    stats statTwo;
+    armourID armourSlot;
+} armour;
+static armour playerArmour[6] = {};
+
+int getArmourBoost(armourID armourId) {
+    return playerArmour[armourId].boostValue;
 }
 
-int getArmourBonusValue(int armour) {
-    return armour / 100;
+int getBoostedStatOne(armourID armourId) {
+    return playerArmour[armourId].statOne;
 }
 
-int getArmourStatOne(int armour) {
-    return armour % 10;
+int getBoostedStatTwo(armourID armourId) {
+    return playerArmour[armourId].statTwo;
 }
 
-int getArmourStatTwo(int armour) {
-    return (armour % 100) / 10;
+void printAllArmourEquipped() {
+    int i;
+    for (i = 0; i <= 5; i++) {
+        printf("Slot id: %d BonusValue: %d "
+               "StatOne: %d StatTwo: %d \n",
+               i,
+               getArmourBoost(i),
+               getBoostedStatOne(i),
+               getBoostedStatTwo(i));
+
+    }
 }
 
 
-#endif /* ARMOUR_C */
+void setFArmour() {
+    armour NewArmour = {13, Agility, Strength, Helm};
+    playerArmour[0] = NewArmour;
+    armour NewArmour2 = {8, Health, Magic, Chestplate};
+    playerArmour[1] = NewArmour2;
+}
+
+void setArmour(armour newArmour) {
+    playerArmour[newArmour.armourSlot] = newArmour;
+}
+
+#endif // ARMOUR1_c

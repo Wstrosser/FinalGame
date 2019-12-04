@@ -105,6 +105,7 @@ void attackingTheEnemy() {
 int combatScreen() { //Return 0 if the player continues and 1 if not
     setInitialEnemies();
     setTempPlayerData();
+    placeArmourOnTemp(tempPlayerData);
     int speedAp = getPlayerValueAtN(Agility) / 10 + 1, speedAe = getEnemyValueAtN(Agility) / 10 + 1;
     int maxSpeedTotal = returnLCM(speedAp, speedAe);
     int speedE = maxSpeedTotal, speedP = maxSpeedTotal;

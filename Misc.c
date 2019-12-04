@@ -7,7 +7,9 @@
 
 #ifndef MISC_C
 #define MISC_C
-
+typedef enum {
+    false, true
+} bool;
 int max(int x, int y) {
     if (x > y) {
         return x;

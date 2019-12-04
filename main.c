@@ -6,8 +6,7 @@
 #include "Misc.c"
 #include "PrintOuts.c"
 #include "PlayerPrompts.c"
-#include "Armour1.c"
-
+#include "Armour.c"
 
 
 void initailizingGame();
@@ -15,13 +14,12 @@ void initailizingGame();
 int main() {
     initailizingGame();
     //printIntroScreen();
-    int i = 0;
-    while (i < 16) {
-        if (combatScreen() == 1)
-            break;
-        i++;
+    printAllArmourEquipped();
+    int i;
+    for (i = 0; i < 10; i++) {
+        applyGodsBoost(i);
     }
-
+    printAllArmourEquipped();
     return 0;
     /*
     setFArmour();
