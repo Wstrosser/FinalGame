@@ -6,7 +6,7 @@ This game is compiled by using just main.c.
 
 Todo
 -
-- [ ] Make todo list 
+- [x] Make todo list 
 - [ ] Main menu screen
 - [ ] Use struct for equipment/items
 - [ ] Comment code for confusing code

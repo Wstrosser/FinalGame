@@ -105,7 +105,7 @@ void attackingTheEnemy() {
 int combatScreen() { //Return 0 if the player continues and 1 if not
     setInitialEnemies();
     setTempPlayerData();
-    placeArmourOnTemp(tempPlayerData);
+    placeArmourOnTemp();
     int speedAp = getPlayerValueAtN(Agility) / 10 + 1, speedAe = getEnemyValueAtN(Agility) / 10 + 1;
     int maxSpeedTotal = returnLCM(speedAp, speedAe);
     int speedE = maxSpeedTotal, speedP = maxSpeedTotal;
@@ -115,7 +115,7 @@ int combatScreen() { //Return 0 if the player continues and 1 if not
         if (tempPlayerData[Health] <= 0) {
             return 1;
         } else if (speedP <= speedAp) {
-            printCombatHeader();
+            printCombatHeader(tempPlayerData, enemies);
             attackingTheEnemy();
             speedP = maxSpeedTotal;
             printf("Press ENTER key to Continue\n");
@@ -128,7 +128,7 @@ int combatScreen() { //Return 0 if the player continues and 1 if not
             printf("\nThe enemy won't fight another day.\n");
             return 0;
         } else if (speedE <= speedAe) {
-            printCombatHeader();
+            printCombatHeader(tempPlayerData, enemies);
             attackingThePlayer();
             speedE = maxSpeedTotal;
             printf("Press ENTER key to Continue\n");
@@ -141,5 +141,30 @@ int combatScreen() { //Return 0 if the player continues and 1 if not
     } while (tempPlayerData[0] > 0 && enemies[0]);
 }
 
+void swapArmourPrompt(armour armour) {
+    printArmour(armour);
+    printArmourSwap();
+    int choice = returnValidImport(1);
+    if (choice == 0) {
+        printf("Armour Swapped\n");
+        setArmour(armour);
+    } else {
+        printf("Armour Not Swapped\n");
+    }
+}
+
+void hasGodsBlessing(int n) {
+    char *GodsName = returnGodBlessing(n);
+    if (hasBlessing(n) == true) {
+        printGodsBlessing(GodsName);
+        if (receiveArmour(n) == true) {
+            printGodBlessedWArmour();
+            swapArmourPrompt(returnGodsArmour(n));
+        } else {
+            printGodBlessedWStat();
+            returnStatBlessing(playerData, n);
+        }
+    }
+}
 
 #endif /*PLAYERPROMPTS_C*/

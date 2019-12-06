@@ -6,7 +6,7 @@
 #define ARMOUR1_C
 
 #include "Player.c"
-
+#include "Misc.c"
 
 /*TODO add random generated Armour
         merge player Array with Armour array
@@ -27,9 +27,9 @@ char *returnArmourType(armourID armourId) {
         case Legplates:
             return "Legplates";
         case Gloves:
-            return "Gloves";
+            return "Pair of Gloves";
         case Boots:
-            return "Boots";
+            return "Pair of Boots";
         case Weapon:
             return "Weapon";
         default:
@@ -40,6 +40,30 @@ char *returnArmourType(armourID armourId) {
 enum Stats {
     Health = 0, Strength, Agility, Defence, MagicDefence, Magic, Intel, Completed
 };
+
+
+char *returnStat(enum Stats stats) {
+    switch (stats) {
+        case Health:
+            return "Health";
+        case Strength:
+            return "Strength";
+        case Agility:
+            return "Agility";
+        case Defence:
+            return "Defence";
+        case Magic:
+            return "Magic Attack";
+        case MagicDefence:
+            return "Magical Defence";
+        case Intel:
+            return "Intel";
+        default:
+            return "";
+    }
+
+}
+
 typedef enum Stats stats;
 
 typedef struct Armour {
@@ -75,16 +99,9 @@ void printAllArmourEquipped() {
     }
 }
 
-
-void setFArmour() {
-    armour NewArmour = {13, Agility, Strength, Helm};
-    playerArmour[0] = NewArmour;
-    armour NewArmour2 = {8, Health, Magic, Chestplate};
-    playerArmour[1] = NewArmour2;
-}
-
 void setArmour(armour newArmour) {
-    playerArmour[newArmour.armourSlot] = newArmour;
+    armourID temp = newArmour.armourSlot;
+    playerArmour[temp] = newArmour;
 }
 
 #endif // ARMOUR1_c

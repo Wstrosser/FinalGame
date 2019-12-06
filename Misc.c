@@ -10,6 +10,15 @@
 typedef enum {
     false, true
 } bool;
+
+char *boolPrint(bool b) {
+    return b == false ? "false" : "true";
+}
+
+enum Stats;
+
+char *returnStat(enum Stats stats);
+
 int max(int x, int y) {
     if (x > y) {
         return x;

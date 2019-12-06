@@ -7,24 +7,21 @@
 #include "PrintOuts.c"
 #include "PlayerPrompts.c"
 #include "Armour.c"
-
+#include "Map.c"
 
 void initailizingGame();
 
 int main() {
     initailizingGame();
     //printIntroScreen();
-    printAllArmourEquipped();
-    int i;
+    srand(time(0));
+    int i = 0;
     for (i = 0; i < 10; i++) {
-        applyGodsBoost(i);
+        combatScreen();
+        hasGodsBlessing(1);
     }
-    printAllArmourEquipped();
-    return 0;
-    /*
-    setFArmour();
-    printAllArmourEquipped();
-*/
+
+
 }
 
 void initailizingGame() {

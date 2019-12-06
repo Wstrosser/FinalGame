@@ -6,7 +6,9 @@
 #define PLAYER_C
 
 #include "Armour.c"
-#include "Events.c"
+#include "Gods.c"
+#include "Misc.c"
+#include "PrintOuts.c"
 
 
 #define StartingStat 10
@@ -28,32 +30,10 @@ void setTempPlayerData();
 enum Stats;
 typedef enum Stats stats;
 
-char *returnStat(enum Stats stats) {
-    switch (stats) {
-        case Health:
-            return "Health";
-        case Strength:
-            return "Strength";
-        case Agility:
-            return "Agility";
-        case Defence:
-            return "Defence";
-        case Magic:
-            return "Magic Attack";
-        case MagicDefence:
-            return "Magical Defence";
-        case Intel:
-            return "Intel";
-        default:
-            return "";
-    }
-
-}
-
-
 void modPlayerStats(int stat, int statChange) {
     int *ptr = &playerData[stat];
     *ptr += statChange;
+    setTempPlayerData();
 }
 
 void setInitialPlayerStats() {
@@ -72,7 +52,7 @@ void setInitialPlayerStats() {
 
 int avgBaseStats() {
     int sum = 0;
-    int i = 0, j = 6;
+    int i = 0;
     while (i <= 6) {
         sum += playerData[i];
         i++;
@@ -87,7 +67,6 @@ void addSkillPoint(int stat) {
 }
 
 
-
 void setTempPlayerData() {
     int i = 0;
     for (i = 0; i <= 5; i++) {
@@ -100,19 +79,11 @@ int getPlayerValueAtN(int n) {
 }
 
 int getPCombatAttackValue(int typeAttack) {
-    if (typeAttack == 0) {
-        return tempPlayerData[1];
-    } else if (typeAttack == 1) {
-        return tempPlayerData[5];
-    } else return 0;
+    return tempPlayerData[(typeAttack == 0 ? 1 : 5)];
 }
 
 int getPCombatDefenceValue(int typeAttack) {
-    if (typeAttack == 0) {
-        return tempPlayerData[3];
-    } else if (typeAttack == 1) {
-        return tempPlayerData[4];
-    } else return 0;
+    return tempPlayerData[(typeAttack == 0 ? 3 : 4)];
 }
 
 void placeArmourOnTemp() {
@@ -125,7 +96,24 @@ void placeArmourOnTemp() {
     }
 }
 
-void applyGodsBoost(int n) {
-    setArmour(returnGodArmour(n));
+void applyGodsArmour(int n) {
+    armour newArmour = returnGodsArmour(n);
+    setArmour(newArmour);
 };
+
+
+void printArmour(armour armour) {
+    armourID temp = armour.armourSlot;
+    printf("Found a %s that boosts %s and %s by %d.\n",
+           returnArmourType(armour.armourSlot),
+           returnStat(armour.statOne),
+           returnStat(armour.statTwo),
+           armour.boostValue);
+    printf("Current %s boosts %s and %s by %d.\n",
+           returnArmourType(temp),
+           returnStat(playerArmour[temp].statOne),
+           returnStat(playerArmour[temp].statTwo),
+           playerArmour[temp].boostValue
+    );
+}
 #endif /* PLAYER_C */

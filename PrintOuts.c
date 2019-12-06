@@ -90,7 +90,7 @@ void printStatUpgrade() {
     printf("[6] Intel\n");
 }
 
-void printCombatHeader() {
+void printCombatHeader(int tempPlayerData[], int enemies[]) {
     system("clear");
     printPlayerHeader(tempPlayerData);
     printEnemyHeader(enemies);
@@ -120,5 +120,22 @@ void printMainMenu() {
            "[2] Quit Game\n");
 }
 
+void printGodsBlessing(char *c) {
+    printf("You have received %s blessing\n", c);
+}
+
+void printGodBlessedWStat() {
+    printf("The gods have blessed your stats\n");
+}
+
+void printGodBlessedWArmour() {
+    printf("The gods have blessed you with armour.\n");
+}
+
+void printArmourSwap() {
+    printf("Would you like to swap your current armour?\n"
+           "[0] Yes\n"
+           "[1] No\n");
+}
 #endif // PRINTOUT_C
 
