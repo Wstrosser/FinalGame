@@ -126,6 +126,8 @@ int combatScreen() { //Return 0 if the player continues and 1 if not
         }
         if (enemies[Health] < 1) {
             printf("\nThe enemy won't fight another day.\n");
+            printf("You received %d gold", avgBaseStats());
+            modPlayerStats(7, avgBaseStats());
             return 0;
         } else if (speedE <= speedAe) {
             printCombatHeader(tempPlayerData, enemies);

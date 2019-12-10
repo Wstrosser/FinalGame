@@ -35,28 +35,101 @@ struct tile {
     int tileSubType;
     bool passable;
     bool containsPlayer;
-} Tile;
-static struct tile map[30][30];
+};
+typedef struct tile Tile;
+static struct tile map[31][31];
+
+bool validTilePlacement(int x, int y) {
+    if (map[x][y].TileType != blank) {
+        return false;
+    }
+    if (map[x + 1][y].TileType == road) {
+        return true;
+    } else if (map[x - 1][y].TileType == road) {
+        return true;
+    } else if (map[x][y - 1].TileType == road) {
+        return true;
+    } else if (map[x][y + 1].TileType == road) {
+        return true;
+    }
+    return false;
+
+}
 
 void setStatues() {
+    Tile tileTemp;
     int i;
     for (i = 0; i <= 10;) {
         int x = (rand() % 30) + 1, y = (rand() % 30) + 1;
-        if (map[x][y].TileType == 0) {
-            Tile.xPos = x;
-            Tile.yPos = y;
-            Tile.TileType = statue;
-            Tile.tileSubType = i;
-            Tile.passable = false;
-            Tile.containsPlayer = false;
-            map[x][y] = Tile;
+        if (validTilePlacement(x, y) == true) {
+            tileTemp.xPos = x;
+            tileTemp.yPos = y;
+            tileTemp.TileType = statue;
+            tileTemp.tileSubType = i;
+            tileTemp.passable = true;
+            tileTemp.containsPlayer = false;
+            map[x][y] = tileTemp;
             i++;
+
         }
     }
 }
 
-void setShops() {
+void createPath() {
+    int i;
+    struct tile pathTile;
+    pathTile.TileType = road;
+    pathTile.passable = true;
+    pathTile.tileSubType = 0;
+    pathTile.containsPlayer = false;
 
+    for (i = 0; i <= 30; i += 5) {
+        int j = 0;
+        for (j = 0; j <= 30; j++) {
+            pathTile.xPos = i;
+            pathTile.yPos = j;
+            map[i][j] = pathTile;
+            pathTile.xPos = j;
+            pathTile.yPos = i;
+            map[j][i] = pathTile;
+
+        }
+    }
+}
+
+void setMarkets() {
+    Tile tileTemp;
+    int i, j;
+    for (j = 0; j < 5; j++) {
+        for (i = 0; i <= 6;) {
+            int x = (rand() % 30) + 1, y = (rand() % 30) + 1;
+            if (validTilePlacement(x, y) == true) {
+                tileTemp.xPos = x;
+                tileTemp.yPos = y;
+                tileTemp.TileType = shop;
+                tileTemp.tileSubType = i;
+                tileTemp.passable = true;
+                tileTemp.containsPlayer = false;
+                map[x][y] = tileTemp;
+                i++;
+
+            }
+        }
+    }
+}
+
+void printMap() {
+
+    createPath();
+    setMarkets();
+    setStatues();
+    int i, j;
+    for (i = 0; i <= 30; i++) {
+        for (j = 0; j <= 30; j++) {
+            printf("| %d.%d ", map[i][j].TileType, map[i][j].tileSubType);
+        }
+        printf("\n");
+    }
 }
 
 #endif /*MAP_C*/

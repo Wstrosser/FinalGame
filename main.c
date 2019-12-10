@@ -15,11 +15,8 @@ int main() {
     initailizingGame();
     //printIntroScreen();
     srand(time(0));
-    int i = 0;
-    for (i = 0; i < 10; i++) {
-        combatScreen();
-        hasGodsBlessing(1);
-    }
+    printMap();
+    getchar();
 
 
 }
