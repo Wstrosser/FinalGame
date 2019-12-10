@@ -4,7 +4,6 @@
 #ifndef ENEMIES_C
 #define ENEMIES_C
 
-#include "Armour.c"
 #include "Player.c"
 #include "Misc.c"
 

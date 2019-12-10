@@ -102,7 +102,7 @@ void applyGodsArmour(int n) {
 };
 
 
-void printArmour(armour armour) {
+/*void printArmour(armour armour) {
     armourID temp = armour.armourSlot;
     printf("Found a %s that boosts %s and %s by %d.\n",
            returnArmourType(armour.armourSlot),
@@ -115,5 +115,5 @@ void printArmour(armour armour) {
            returnStat(playerArmour[temp].statTwo),
            playerArmour[temp].boostValue
     );
-}
+}*/
 #endif /* PLAYER_C */

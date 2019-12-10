@@ -12,6 +12,8 @@
         merge player Array with Armour array
         create a way for enemies to have armour
  */
+int getPlayerValueAtN(int n);
+
 typedef enum ArmourID armourID;
 
 enum ArmourID {
@@ -99,9 +101,68 @@ void printAllArmourEquipped() {
     }
 }
 
+void printSwapArmour(armour armour) {
+    armourID temp = armour.armourSlot;
+    printf("Found a %s that boosts %s and %s by %d.\n",
+           returnArmourType(armour.armourSlot),
+           returnStat(armour.statOne),
+           returnStat(armour.statTwo),
+           armour.boostValue);
+    printf("Current %s boosts %s and %s by %d.\n",
+           returnArmourType(temp),
+           returnStat(playerArmour[temp].statOne),
+           returnStat(playerArmour[temp].statTwo),
+           playerArmour[temp].boostValue
+    );
+}
+
+void printArmour(armour *armour) {
+    int i = 0;
+    while (i < 3) {
+
+        printf("[%d] %s that boosts %s and %s by %d.\n",
+               i,
+               returnArmourType(armour[i].armourSlot),
+               returnStat(armour[i].statOne),
+               returnStat(armour[i].statTwo),
+               armour[i].boostValue);
+        i++;
+    }
+    printf("[3] Leave Shop\n");
+}
+
 void setArmour(armour newArmour) {
     armourID temp = newArmour.armourSlot;
     playerArmour[temp] = newArmour;
+}
+
+int avgArmourStats() {
+    int sum, i;
+    for (i = 0; i <= 6; i++) {
+        sum += playerArmour[i].boostValue;
+    }
+
+}
+
+int returnValidImport(int maxChoice);
+
+void swapArmourPrompt(armour armour);
+
+void shopArmour(armourID id) {
+    armour shopArmour[3];
+    int i = 0;
+    while (i < 3) {
+        shopArmour[i].armourSlot = id;
+        shopArmour[i].boostValue = rand() % returnRoundedFloat(avgArmourStats() * 1.25) + 10;
+        shopArmour[i].statTwo = rand() % 7;
+        shopArmour[i].statOne = rand() % 7;
+        i++;
+    }
+    printArmour(shopArmour);
+    int choice = returnValidImport(3);
+    if (choice != 3) {
+        swapArmourPrompt(shopArmour[choice]);
+    }
 }
 
 #endif // ARMOUR1_c

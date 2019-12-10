@@ -75,6 +75,48 @@ void setStatues() {
     }
 }
 
+void setMarkets() {
+    Tile tileTemp;
+    int i, j;
+    for (j = 0; j < 5; j++) {
+        for (i = 0; i <= 6;) {
+            int x = (rand() % 30) + 1, y = (rand() % 30) + 1;
+            if (validTilePlacement(x, y) == true) {
+                tileTemp.xPos = x;
+                tileTemp.yPos = y;
+                tileTemp.TileType = shop;
+                tileTemp.tileSubType = i;
+                tileTemp.passable = true;
+                tileTemp.containsPlayer = false;
+                map[x][y] = tileTemp;
+                i++;
+
+            }
+        }
+    }
+}
+
+void setHomes() {
+    Tile tileTemp;
+    int i, j;
+    for (j = 0; j < 15; j++) {
+        for (i = 0; i <= 7;) {
+            int x = (rand() % 30) + 1, y = (rand() % 30) + 1;
+            if (validTilePlacement(x, y) == true) {
+                tileTemp.xPos = x;
+                tileTemp.yPos = y;
+                tileTemp.TileType = home;
+                tileTemp.tileSubType = i;
+                tileTemp.passable = true;
+                tileTemp.containsPlayer = false;
+                map[x][y] = tileTemp;
+                i++;
+
+            }
+        }
+    }
+}
+
 void createPath() {
     int i;
     struct tile pathTile;
@@ -97,30 +139,10 @@ void createPath() {
     }
 }
 
-void setMarkets() {
-    Tile tileTemp;
-    int i, j;
-    for (j = 0; j < 5; j++) {
-        for (i = 0; i <= 6;) {
-            int x = (rand() % 30) + 1, y = (rand() % 30) + 1;
-            if (validTilePlacement(x, y) == true) {
-                tileTemp.xPos = x;
-                tileTemp.yPos = y;
-                tileTemp.TileType = shop;
-                tileTemp.tileSubType = i;
-                tileTemp.passable = true;
-                tileTemp.containsPlayer = false;
-                map[x][y] = tileTemp;
-                i++;
-
-            }
-        }
-    }
-}
-
 void printMap() {
 
     createPath();
+    setHomes();
     setMarkets();
     setStatues();
     int i, j;

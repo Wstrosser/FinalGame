@@ -7,7 +7,6 @@
 
 #include "Armour.c"
 #include "Misc.c"
-//TODO work on this a lot
 
 enum godsBlessingID {
     Hermes = 0, Hephaestus, Ares, Cronos, Apollo,
@@ -123,6 +122,7 @@ bool receiveArmour(ID n) {
         return false;
     }
 }
+
 
 void returnStatBlessing(int n[], ID id) {
     n[godsArray[id].statOne] *= (1 + godsArray[id].statOneBoost) / 100;

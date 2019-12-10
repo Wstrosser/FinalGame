@@ -137,5 +137,27 @@ void printArmourSwap() {
            "[0] Yes\n"
            "[1] No\n");
 }
+
+void printGodsStatue(char *gods) {
+    printf("You approach the statue of %s.\n"
+           "What would you like to do?\n"
+           "[0] Request a blessing\n"
+           "[1] Leave the statue\n"
+           "[2] Challenge the god\n", gods);
+}
+
+void printShop(char *shopType) {
+    printf("You approach a %s shop.\n"
+           "What would you like to do?\n"
+           "[0] See what the shop has to offer\n"
+           "[1] Leave\n", shopType);
+}
+
+void printHome() {
+    printf("You approach a home.\n"
+           "What would you like to do?\n"
+           "[0] Knock on the door\n"
+           "[1] Leave\n");
+}
 #endif // PRINTOUT_C
 

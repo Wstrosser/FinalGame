@@ -141,10 +141,11 @@ int combatScreen() { //Return 0 if the player continues and 1 if not
         }
 
     } while (tempPlayerData[0] > 0 && enemies[0]);
+
 }
 
 void swapArmourPrompt(armour armour) {
-    printArmour(armour);
+    printSwapArmour(armour);
     printArmourSwap();
     int choice = returnValidImport(1);
     if (choice == 0) {
