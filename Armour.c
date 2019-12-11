@@ -74,7 +74,7 @@ typedef struct Armour {
     stats statTwo;
     armourID armourSlot;
 } armour;
-static armour playerArmour[6] = {};
+static armour playerArmour[6];
 
 int getArmourBoost(armourID armourId) {
     return playerArmour[armourId].boostValue;

@@ -19,7 +19,7 @@ enum Stats;
 
 char *returnStat(enum Stats stats);
 
-int max(int x, int y) {
+int max(int x, int y){
     if (x > y) {
         return x;
     } else {

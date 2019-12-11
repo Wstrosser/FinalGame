@@ -26,7 +26,7 @@ void statueEvent(int subType) {
 
     }
 
-};
+}
 
 void shopEvent(int subType) {
     printShop(returnArmourType(subType));
