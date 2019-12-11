@@ -139,6 +139,12 @@ void createPath() {
     }
 }
 
+void initailGrid() {
+    createPath();
+    setHomes();
+    setMarkets();
+    setStatues();
+}
 void printMap() {
 
     createPath();

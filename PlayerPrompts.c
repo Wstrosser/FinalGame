@@ -34,6 +34,7 @@ void addStatPoint(int nSkillPoints) {
 
             printf("Remaining skill point :%d\n", nSkillPoints);
         }
+        clear();
     } while (nSkillPoints > 0);
 }
 
@@ -126,7 +127,7 @@ int combatScreen() { //Return 0 if the player continues and 1 if not
         }
         if (enemies[Health] < 1) {
             printf("\nThe enemy won't fight another day.\n");
-            printf("You received %d gold", avgBaseStats());
+            printf("You received %d gold.\n", avgBaseStats());
             modPlayerStats(7, avgBaseStats());
             return 0;
         } else if (speedE <= speedAe) {
@@ -154,6 +155,7 @@ void swapArmourPrompt(armour armour) {
     } else {
         printf("Armour Not Swapped\n");
     }
+    clear();
 }
 
 void hasGodsBlessing(int n) {

@@ -17,13 +17,14 @@ int main() {
     //printIntroScreen();
     srand(time(0));
     int i = 0;
-    while (i < 6) {
+    while (i == 0) {
+        i = combatScreen();
+        if (i == 1) {
+            break;
+        }
+        movePlayer();
 
-        shopArmour(i);
-        printAllArmourEquipped();
-        i++;
     }
-    getchar();
 
 
 }
@@ -32,6 +33,7 @@ void initailizingGame() {
 
     setInitialPlayerStats();
     setInitialEnemies();
+    initailGrid();
 }
 
 

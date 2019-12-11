@@ -137,10 +137,11 @@ void setArmour(armour newArmour) {
 }
 
 int avgArmourStats() {
-    int sum, i;
-    for (i = 0; i <= 6; i++) {
+    int sum = 0, i;
+    for (i = 1; i <= 6; i++) {
         sum += playerArmour[i].boostValue;
     }
+    return sum / 6;
 
 }
 
@@ -152,8 +153,9 @@ void shopArmour(armourID id) {
     armour shopArmour[3];
     int i = 0;
     while (i < 3) {
+        int maxBoostValue = avgArmourStats() * 1.25;
         shopArmour[i].armourSlot = id;
-        shopArmour[i].boostValue = rand() % returnRoundedFloat(avgArmourStats() * 1.25) + 10;
+        shopArmour[i].boostValue = rand() % maxBoostValue + 10;
         shopArmour[i].statTwo = rand() % 7;
         shopArmour[i].statOne = rand() % 7;
         i++;

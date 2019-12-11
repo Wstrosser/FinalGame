@@ -136,6 +136,7 @@ void printArmourSwap() {
     printf("Would you like to swap your current armour?\n"
            "[0] Yes\n"
            "[1] No\n");
+
 }
 
 void printGodsStatue(char *gods) {
@@ -144,6 +145,7 @@ void printGodsStatue(char *gods) {
            "[0] Request a blessing\n"
            "[1] Leave the statue\n"
            "[2] Challenge the god\n", gods);
+
 }
 
 void printShop(char *shopType) {
@@ -151,6 +153,7 @@ void printShop(char *shopType) {
            "What would you like to do?\n"
            "[0] See what the shop has to offer\n"
            "[1] Leave\n", shopType);
+
 }
 
 void printHome() {
@@ -158,6 +161,18 @@ void printHome() {
            "What would you like to do?\n"
            "[0] Knock on the door\n"
            "[1] Leave\n");
+
+}
+
+void printCardinalTile(char *north, char *east, char *south, char *west) {
+    printf("What direction would you like to go?\n");
+    printf("[0] %s is north\n"
+           "[1] %s is east\n"
+           "[2] %s is south\n"
+           "[3] %s is west\n",
+           north, east, south, west);
+
+
 }
 #endif // PRINTOUT_C
 
